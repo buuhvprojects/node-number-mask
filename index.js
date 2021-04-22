@@ -7,11 +7,9 @@ var Mask = /** @class */ (function () {
      * Formata o valor passada de acordo com a máscara fornecida
      * @param value valor a ser mascarado
      * @param valueMask máscara
-     * @returns
+     * @returns string
      */
     Mask.format = function (value, valueMask) {
-        if (value === void 0) { value = ''; }
-        if (valueMask === void 0) { valueMask = ''; }
         try {
             var currentValue = value.toString().replace(/\-|\.|\/|\(|\)| /g, '');
             var valuePosition = 0;
@@ -33,6 +31,16 @@ var Mask = /** @class */ (function () {
         catch (error) {
             return valueMask;
         }
+    };
+    /**
+     * Remove uma máscara aplicada
+     * @param value valor em string
+     * @returns number
+     */
+    Mask.removeMask = function (value) {
+        if (!value)
+            value = 0;
+        return parseInt(value.toString().replace(/\D/g, ''));
     };
     return Mask;
 }());
